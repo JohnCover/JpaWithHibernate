@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.entity.Course;
 import com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.repository.CourseRepository;
+import com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.repository.StudentRepository;
 
 import ch.qos.logback.classic.Logger;
 
@@ -20,10 +21,14 @@ public class AdvancedJpaDemoApplication implements CommandLineRunner {
 	private Logger log = (Logger) LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	private CourseRepository repo;
+	private CourseRepository courseRepo;
+	
+	@Autowired
+	private StudentRepository studentRepo;
 	
 	@Override
 	public void run(String... args) throws Exception {
-		repo.playWithEntityManager();
+		studentRepo.saveStudentWithPassport();
+		//repo.playWithEntityManager();
 	}
 }
