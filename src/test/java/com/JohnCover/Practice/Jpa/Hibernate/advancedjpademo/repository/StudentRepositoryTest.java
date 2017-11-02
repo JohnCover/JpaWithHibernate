@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.AdvancedJpaDemoApplication;
+import com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.entity.Course;
 import com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.entity.Passport;
 import com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.entity.Student;
 
@@ -50,6 +51,24 @@ public class StudentRepositoryTest {
 		
 		log.info("Passport -> {}", passport);
 		log.info("Student -> {}", passport.getStudent());
+		
+	}
+	
+	@Test
+	@Transactional
+	public void retrieveStudentAndCourses() {
+		Student student = em.find(Student.class, 20001L);
+		log.info("Student -> {}", student);
+		log.info("courses -> {}", student.getCourses());	
+		
+	}
+	
+	@Test
+	@Transactional
+	public void retrieveCoursesAndStudents() {
+		Course course = em.find(Course.class, 10001L);
+		log.info("Student -> {}", course);
+		log.info("courses -> {}", course.getStudents());	
 		
 	}
 	

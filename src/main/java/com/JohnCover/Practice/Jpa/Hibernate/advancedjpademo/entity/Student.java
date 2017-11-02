@@ -1,10 +1,16 @@
 package com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 
@@ -20,6 +26,14 @@ public class Student {
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	protected Passport passport;
+
+	@ManyToMany()
+	@JoinTable(name="STUDENT_COURSE",
+	joinColumns = @JoinColumn(name="STUDENT_ID"),
+	inverseJoinColumns= @JoinColumn(name="COURSE_ID"))
+	//joinColumn - STUDENT_ID
+	//inverseJoinColumn - COURSE_ID
+	private List<Course> courses = new ArrayList();
 	
 	public Passport getPassport() {
 		return passport;
@@ -47,6 +61,12 @@ public class Student {
 	}
 	public Long getId() {
 		return id;
+	}
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public void addCourse(Course course) {
+		this.courses.add(course);
 	}
 
 	@Override

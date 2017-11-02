@@ -1,5 +1,7 @@
 package com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.slf4j.LoggerFactory;
@@ -75,6 +77,20 @@ public class CourseRepository {
 		//save it to the database
 		em.persist(review1);
 		em.persist(review2);
+	}
+	
+	public void addReviewsForCourse(Long courseId, List<Review> reviews) {
+		//get the course 10003
+		Course course = findById(courseId);
+		log.info("Course.getReviews() -> {}", course.getReviews());
+		
+		//add reviews to it and save to db
+		for(Review review : reviews) {
+			review.setCourse(course);
+			course.addReviews(review);	
+			em.persist(review);
+		}
+
 	}
 	
 
