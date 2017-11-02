@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.entity.Course;
+import com.JohnCover.Practice.Jpa.Hibernate.advancedjpademo.entity.Review;
 
 import ch.qos.logback.classic.Logger;
 
@@ -54,7 +55,26 @@ public class CourseRepository {
 		//em.refresh(course1); //object course 1 is returned to the state in the database
 		
 		//em.flush();
+	}
+	
+	public void addReviewsForCourse() {
+		//get the course 10003
+		Course course = findById(10003L);
+		log.info("Course.getReviews() -> {}", course.getReviews());
 		
+		//add 2 reviews to it
+		Review review1 = new Review("5", "Great Hands-on Stuff.");
+		Review review2 = new Review("5", "Hatsoff.");
+		
+		review1.setCourse(course);
+		course.addReviews(review1);
+		
+		review2.setCourse(course);
+		course.addReviews(review2);
+		
+		//save it to the database
+		em.persist(review1);
+		em.persist(review2);
 	}
 	
 

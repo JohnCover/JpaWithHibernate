@@ -60,4 +60,5 @@ public class AdvancedJpaDemoApplicationTests {
 		repo.playWithEntityManager();
 	}
 
+
 }

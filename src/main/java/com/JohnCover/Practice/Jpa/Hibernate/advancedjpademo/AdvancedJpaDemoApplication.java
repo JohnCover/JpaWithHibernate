@@ -28,7 +28,8 @@ public class AdvancedJpaDemoApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		studentRepo.saveStudentWithPassport();
+		//studentRepo.saveStudentWithPassport();
 		//repo.playWithEntityManager();
+		courseRepo.addReviewsForCourse();
 	}
 }
